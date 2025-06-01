@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Linear Comment Sorter",
+  "version": "1.0",
+  "description": "Add a sort dropdown to Linear issues (Newest→Oldest or Oldest→Newest).",
+  "permissions": ["scripting", "activeTab"],
+  "host_permissions": [
+    "https://*.linear.app/*/issue/*",
+    "https://*.linear.app/*/issues/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.linear.app/*/issue/*",
+        "https://*.linear.app/*/issues/*",
+        "https://*.linear.app/*/*/issue/*",
+        "https://*.linear.app/*/*/issues/*"
+      ],
+      "js": ["dist/main.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
