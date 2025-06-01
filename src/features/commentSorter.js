@@ -5,6 +5,8 @@ export function initCommentSorter() {
   const wrapper = findCommentsWrapper();
   if (!wrapper) return;
 
+  //test
+
   if (document.querySelector('.linear-sort-container')) return;
 
   const container = document.createElement('div');
