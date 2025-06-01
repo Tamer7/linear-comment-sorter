@@ -14,7 +14,6 @@ function observeForSPA() {
           node.querySelector &&
           node.querySelector("div[id^='comment-'][id$='-container']")
         ) {
-          // A new comments wrapper appeared → re‐inject both features
           initCommentSorter();
           initHideEventsToggle();
           return;
