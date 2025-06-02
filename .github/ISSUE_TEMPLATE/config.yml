@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/Tamer7/linear-comment-sorter/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 📖 Documentation
+    url: https://github.com/Tamer7/linear-comment-sorter#readme
+    about: Read the documentation and setup guides
+  - name: 🔍 Existing Issues
+    url: https://github.com/Tamer7/linear-comment-sorter/issues
+    about: Check if your issue has already been reported 

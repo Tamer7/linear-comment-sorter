@@ -17,6 +17,7 @@
         "https://*.linear.app/*/*/issues/*"
       ],
       "js": ["dist/main.js"],
+      "css": ["dist/style.css"],
       "run_at": "document_idle"
     }
   ]
