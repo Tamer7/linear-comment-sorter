@@ -1,12 +1,32 @@
 import { findCommentsWrapper } from '../utils/dom.js';
 import { readHideEvents, storeHideEvents } from '../utils/storage.js';
+import { controlsManager } from '../ui/controlsManager.js';
 
 export function initHideEventsToggle() {
   const wrapper = findCommentsWrapper();
   if (!wrapper) return;
 
-  if (document.querySelector('.hide-events-container')) return;
+  controlsManager.init(wrapper);
 
+  const hideContainer = createHideEventsContainer();
+
+  controlsManager.registerFeature('hideEventsToggle', hideContainer);
+
+  const checkbox = hideContainer.querySelector('#hide-events-checkbox');
+
+  const wasHidden = readHideEvents();
+  checkbox.checked = wasHidden;
+
+  toggleEventVisibility(!wasHidden);
+
+  checkbox.addEventListener('change', () => {
+    const hide = checkbox.checked;
+    storeHideEvents(hide);
+    toggleEventVisibility(!hide);
+  });
+}
+
+function createHideEventsContainer() {
   const hideContainer = document.createElement('div');
   hideContainer.className = 'hide-events-container';
 
@@ -23,31 +43,14 @@ export function initHideEventsToggle() {
   hideContainer.appendChild(checkbox);
   hideContainer.appendChild(label);
 
-  const sortContainer = document.querySelector('.linear-sort-container');
-  if (sortContainer && sortContainer.parentElement) {
-    sortContainer.parentElement.insertBefore(hideContainer, wrapper);
-  }
-
-  const wasHidden = readHideEvents();
-  checkbox.checked = wasHidden;
-
-  toggleEventVisibility(!wasHidden);
-
-  checkbox.addEventListener('change', () => {
-    const hide = checkbox.checked;
-    storeHideEvents(hide);
-    toggleEventVisibility(!hide);
-  });
+  return hideContainer;
 }
 
 function toggleEventVisibility(show) {
-  // Find all event containers (sc-jnGgBm KGrRD that contain history entries but not comments)
   document.querySelectorAll('div.sc-jnGgBm.KGrRD').forEach(container => {
-    // Skip if this container has a comment
     if (container.querySelector("div[id^='comment-'][id$='-container']"))
       return;
 
-    // Check if this container has any history entries (events)
     if (container.querySelector('[data-history-entry-id]')) {
       container.style.display = show ? '' : 'none';
     }

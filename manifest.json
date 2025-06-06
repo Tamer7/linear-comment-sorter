@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Linear Comment Sorter",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Add a sort dropdown to Linear issues (Newest→Oldest or Oldest→Newest).",
   "permissions": [],
   "host_permissions": [
