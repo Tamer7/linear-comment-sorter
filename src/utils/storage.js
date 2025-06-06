@@ -1,12 +1,13 @@
 const SORT_KEY = 'linearSortOrder';
 const HIDE_KEY = 'linearHideEvents';
+const ACCORDION_KEY = 'linearAccordionCollapsed';
 
 export function readUserSortOrder() {
   try {
     const val = localStorage.getItem(SORT_KEY);
     if (val === 'asc' || val === 'desc') return val;
-  } catch {
-    // Ignore localStorage errors - fallback to default
+  } catch (error) {
+    console.error('Failed to read sort order from localStorage:', error);
   }
   return 'asc';
 }
@@ -14,8 +15,8 @@ export function readUserSortOrder() {
 export function storeUserSortOrder(order) {
   try {
     localStorage.setItem(SORT_KEY, order);
-  } catch {
-    // Ignore localStorage errors - graceful degradation
+  } catch (error) {
+    console.error('Failed to store sort order to localStorage:', error);
   }
 }
 
@@ -24,8 +25,8 @@ export function readHideEvents() {
     const val = localStorage.getItem(HIDE_KEY);
     if (val === 'true') return true;
     if (val === 'false') return false;
-  } catch {
-    // Ignore localStorage errors - fallback to default
+  } catch (error) {
+    console.error('Failed to read hide events state from localStorage:', error);
   }
   return false;
 }
@@ -33,7 +34,26 @@ export function readHideEvents() {
 export function storeHideEvents(hide) {
   try {
     localStorage.setItem(HIDE_KEY, hide ? 'true' : 'false');
-  } catch {
-    // Ignore localStorage errors - graceful degradation
+  } catch (error) {
+    console.error('Failed to store hide events state to localStorage:', error);
+  }
+}
+
+export function readAccordionState() {
+  try {
+    const val = localStorage.getItem(ACCORDION_KEY);
+    if (val === 'true') return true;
+    if (val === 'false') return false;
+  } catch (error) {
+    console.error('Failed to read accordion state from localStorage:', error);
+  }
+  return false;
+}
+
+export function storeAccordionState(collapsed) {
+  try {
+    localStorage.setItem(ACCORDION_KEY, collapsed ? 'true' : 'false');
+  } catch (error) {
+    console.error('Failed to store accordion state to localStorage:', error);
   }
 }
