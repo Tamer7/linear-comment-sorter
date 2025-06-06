@@ -3,7 +3,7 @@
   "name": "Linear Comment Sorter",
   "version": "1.0",
   "description": "Add a sort dropdown to Linear issues (Newest→Oldest or Oldest→Newest).",
-  "permissions": ["scripting", "activeTab"],
+  "permissions": [],
   "host_permissions": [
     "https://*.linear.app/*/issue/*",
     "https://*.linear.app/*/issues/*"
@@ -20,5 +20,11 @@
       "css": ["dist/style.css"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "linear-comment-sorter@example.com"
+    }
+  }
 }

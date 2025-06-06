@@ -13,7 +13,6 @@ export function initCommentSorter() {
   container.className = 'linear-sort-container';
 
   const label = document.createElement('label');
-  label.textContent = '';
   label.setAttribute('for', 'linear-sort-select');
   label.className = 'sort-label';
   container.appendChild(label);

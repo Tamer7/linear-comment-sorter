@@ -41,10 +41,15 @@ export function initHideEventsToggle() {
 }
 
 function toggleEventVisibility(show) {
-  document.querySelectorAll('[data-history-entry-id]').forEach(entry => {
-    if (entry.closest("div[id^='comment-'][id$='-container']")) return;
+  // Find all event containers (sc-jnGgBm KGrRD that contain history entries but not comments)
+  document.querySelectorAll('div.sc-jnGgBm.KGrRD').forEach(container => {
+    // Skip if this container has a comment
+    if (container.querySelector("div[id^='comment-'][id$='-container']"))
+      return;
 
-    const topWrapper = entry.closest('div.sc-jWpGds.ktahlZ');
-    if (topWrapper) topWrapper.style.display = show ? '' : 'none';
+    // Check if this container has any history entries (events)
+    if (container.querySelector('[data-history-entry-id]')) {
+      container.style.display = show ? '' : 'none';
+    }
   });
 }
