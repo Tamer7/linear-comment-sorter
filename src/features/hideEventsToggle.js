@@ -31,7 +31,9 @@ export function initHideEventsToggle() {
   const wasHidden = readHideEvents();
   checkbox.checked = wasHidden;
 
-  toggleEventVisibility(!wasHidden);
+  setTimeout(() => {
+    toggleEventVisibility(!wasHidden);
+  }, 100);
 
   checkbox.addEventListener('change', () => {
     const hide = checkbox.checked;
@@ -61,11 +63,36 @@ function createHideEventsContainer() {
 }
 
 function toggleEventVisibility(show) {
-  document.querySelectorAll('div.sc-jnGgBm.KGrRD').forEach(container => {
+  // More robust event detection - look for various patterns
+  const wrapper = findCommentsWrapper();
+  if (!wrapper) return;
+
+  const children = Array.from(wrapper.children);
+
+  children.forEach(container => {
+    // Skip if this contains a comment
     if (container.querySelector("div[id^='comment-'][id$='-container']"))
       return;
+    if (container.querySelector('[data-testid="issue-comment"]')) return;
 
-    if (container.querySelector('[data-history-entry-id]')) {
+    // Look for event indicators
+    const isEvent =
+      container.querySelector('[data-history-entry-id]') ||
+      container.querySelector('[class*="history"]') ||
+      container.querySelector('[class*="event"]') ||
+      container.querySelector('[class*="activity"]') ||
+      // Look for common event text patterns
+      (container.textContent &&
+        (container.textContent.includes('moved this issue') ||
+          container.textContent.includes('changed the status') ||
+          container.textContent.includes('assigned') ||
+          container.textContent.includes('unassigned') ||
+          container.textContent.includes('added label') ||
+          container.textContent.includes('removed label') ||
+          container.textContent.includes('changed priority') ||
+          container.textContent.includes('changed estimate')));
+
+    if (isEvent) {
       container.style.display = show ? '' : 'none';
     }
   });

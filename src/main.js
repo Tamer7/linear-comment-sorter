@@ -4,6 +4,7 @@ import { waitForElement } from './utils/poller.js';
 import { findCommentsWrapper } from './utils/dom.js';
 import { initCommentSorter } from './features/commentSorter.js';
 import { initHideEventsToggle } from './features/hideEventsToggle.js';
+import { initCommentFormToTop } from './features/commentFormToTop.js';
 
 function shouldInitialize() {
   return (
@@ -19,6 +20,7 @@ function initExtension() {
     .then(() => {
       initCommentSorter();
       initHideEventsToggle();
+      initCommentFormToTop();
     })
     .catch(() => {});
 }
