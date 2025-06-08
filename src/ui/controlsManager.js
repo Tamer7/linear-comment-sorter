@@ -9,17 +9,29 @@ class ControlsManager {
   }
 
   init(wrapper) {
-    if (
-      this.initialized ||
-      document.querySelector('.linear-controls-wrapper')
-    ) {
+    const existingUI = document.querySelector('.linear-controls-wrapper');
+    if (existingUI) {
       return false;
     }
 
-    this.createUI(wrapper);
-    this.setupAccordion();
-    this.initialized = true;
+    if (this.initialized && this.features.size > 0 && !existingUI) {
+      this.reset();
+    }
+
+    if (!this.initialized) {
+      this.createUI(wrapper);
+      this.setupAccordion();
+      this.initialized = true;
+    }
+
     return true;
+  }
+
+  reset() {
+    this.features.clear();
+    this.controlsWrapper = null;
+    this.controlsContent = null;
+    this.initialized = false;
   }
 
   createUI(wrapper) {
@@ -56,7 +68,9 @@ class ControlsManager {
     this.controlsWrapper.appendChild(header);
     this.controlsWrapper.appendChild(this.controlsContent);
 
-    wrapper.parentElement.insertBefore(this.controlsWrapper, wrapper);
+    if (wrapper.parentElement) {
+      wrapper.parentElement.insertBefore(this.controlsWrapper, wrapper);
+    }
   }
 
   setupAccordion() {

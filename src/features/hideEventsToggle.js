@@ -6,6 +6,20 @@ export function initHideEventsToggle() {
   const wrapper = findCommentsWrapper();
   if (!wrapper) return;
 
+  if (
+    controlsManager.getFeature('hideEventsToggle') &&
+    document.querySelector('.linear-controls-wrapper')
+  ) {
+    return;
+  }
+
+  if (
+    controlsManager.getFeature('hideEventsToggle') &&
+    !document.querySelector('.linear-controls-wrapper')
+  ) {
+    controlsManager.unregisterFeature('hideEventsToggle');
+  }
+
   controlsManager.init(wrapper);
 
   const hideContainer = createHideEventsContainer();
