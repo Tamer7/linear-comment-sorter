@@ -10,10 +10,22 @@ export function initCommentSorter() {
   const wrapper = findCommentsWrapper();
   if (!wrapper) return;
 
+  if (
+    controlsManager.getFeature('commentSorter') &&
+    document.querySelector('.linear-controls-wrapper')
+  ) {
+    return;
+  }
+
+  if (
+    controlsManager.getFeature('commentSorter') &&
+    !document.querySelector('.linear-controls-wrapper')
+  ) {
+    controlsManager.unregisterFeature('commentSorter');
+  }
+
   controlsManager.init(wrapper);
-
   const sortContainer = createSortContainer();
-
   controlsManager.registerFeature('commentSorter', sortContainer);
 
   const select = sortContainer.querySelector('#linear-sort-select');
