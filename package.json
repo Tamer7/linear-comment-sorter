@@ -1,6 +1,6 @@
 {
   "name": "linear-comment-sorter",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "type": "module",
   "main": "content.js",
   "scripts": {

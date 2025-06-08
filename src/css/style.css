@@ -115,6 +115,16 @@
   box-shadow: 0 0 0 2px rgba(91, 164, 255, 0.2);
 }
 
+.sort-select option {
+  background: #1f1f1f;
+  color: rgba(255, 255, 255, 0.95);
+  padding: 4px 8px;
+}
+
+.sort-select option:hover {
+  background: #2a2a2a;
+}
+
 /* Hide events controls */
 .hide-events-container {
   display: flex;
@@ -136,4 +146,29 @@
   font-weight: 500;
   cursor: pointer;
   user-select: none;
-} 
+}
+
+/* Comment form to top controls */
+.comment-form-to-top-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+
+.comment-form-to-top-checkbox {
+  accent-color: #5ba4ff;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.comment-form-to-top-label {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+ 

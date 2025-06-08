@@ -20,6 +20,7 @@ export default [
         MutationObserver: 'readonly',
         requestAnimationFrame: 'readonly',
         localStorage: 'readonly',
+        setTimeout: 'readonly',
       },
     },
     plugins: {
