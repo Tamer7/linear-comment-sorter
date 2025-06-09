@@ -2,7 +2,7 @@
 
 A browser extension that enhances Linear issues by adding comment sorting functionality and the ability to hide/show timeline events.
 
-![Linear Comment Sorter](https://img.shields.io/badge/Version-1.0.0-blue.svg)
+![Linear Comment Sorter](https://img.shields.io/badge/Version-1.0.4-blue.svg)
 ![License](https://img.shields.io/badge/License-ISC-green.svg)
 ![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-orange.svg)
 
